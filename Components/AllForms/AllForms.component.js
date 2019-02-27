@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {
-  TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Image, ScrollView, StyleSheet, View,
+  TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Image, ScrollView, StyleSheet, View, Alert,
 } from 'react-native';
 import axios from 'axios';
 import FormCard from '../FormCards/FormCard.component';
+import styles from './AllForms.styles';
 
 export default class AllForms extends Component {
   state = {
@@ -15,6 +16,10 @@ export default class AllForms extends Component {
       this.setState({ allFormsData: formsNames.data });
     });
   }
+
+  clickHandler = () => {
+    this.props.navigation.navigate('AddForm', { navigation: this.props.navigation });
+  };
 
   render() {
     const { allFormsData } = this.state;
@@ -29,18 +34,21 @@ export default class AllForms extends Component {
             ))
           }
         </View>
-
+        <View style={styles.MainContainer}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={this.clickHandler}
+            style={styles.TouchableOpacityStyle}
+          >
+            <Image
+              source={{
+                uri: 'http://aboutreact.com/wp-content/uploads/2018/08/bc72de57b000a7037294b53d34c2cbd1.png',
+              }}
+              style={styles.FloatingButtonStyle}
+            />
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  allCards: {
-    // flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#D8E4F0',
-    // height: 800,
-  },
-});

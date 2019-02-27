@@ -3,6 +3,7 @@ import {
 } from 'react-navigation';
 
 import AllForms from './Components/AllForms/AllForms.component';
+import AddFormComponent from './Components/AddForm/AddForm.component';
 
 const AppNavigator = createStackNavigator({
   AllForms: {
@@ -11,12 +12,12 @@ const AppNavigator = createStackNavigator({
     //   header: null,
     // },
   },
-  // AssessmentPage: {
-  //   screen: AllAssessmentsContainer,
-  // navigationOptions: {
-  //   header: null,
-  // },
-  // },
+  AddForm: {
+    screen: AddFormComponent,
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
 }, {
   initialRouteName: 'AllForms',
 });
