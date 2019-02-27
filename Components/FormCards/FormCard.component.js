@@ -8,13 +8,17 @@ export default class AllForms extends Component {
   render() {
     const { formName, datetime } = this.props;
     return (
-      <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('FormResponse', { navigation: this.props.navigation })}>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => this.props.navigation.navigate('FormResponse',
+          { navigation: this.props.navigation, formName: this.props.formName })}
+      >
         <Text style={styles.cardText}>{formName}</Text>
         <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }} />
         <Text style={styles.datetime}>
           created At:
           {' '}
-          {datetime}
+          {String(new Date(datetime))}
         </Text>
       </TouchableOpacity>
     );

@@ -42,10 +42,20 @@ export default class AllForms extends Component {
     const formFieldValues = this.state.formFieldValues;
     const formFieldsObject = formFieldValues.reduce((o, key) => Object.assign(o, { [key]: '' }), {});
     formFieldsObject.name = this.state.formName;
+    const nonNullValues = 0;
+    for (let fieldName = 0; fieldName < formFieldValues.length; fieldName++) {
+      if (formFieldValues[fieldName] == '' || formFieldValues[fieldName] == null) {
+        alert.alert('Please fill all fields');
+        return;
+      }
+    }
+
     axios.post('http://localhost:7777/add/schema', formFieldsObject).then((res) => {
       this.props.navigation.navigate('AllForms', { navigation: this.props.navigation });
     });
-    console.log(formFieldsObject);
+
+
+    // console.log(formFieldsObject);
   }
 
   render() {

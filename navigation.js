@@ -15,15 +15,21 @@ const AppNavigator = createStackNavigator({
   },
   AddForm: {
     screen: AddFormComponent,
-    // navigationOptions: {
-    //   header: null,
-    // },
   },
   FormResponse: {
     screen: FormResponseComponent,
   },
 }, {
   initialRouteName: 'AllForms',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: 'purple',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
 });
 
 export default createAppContainer(AppNavigator);

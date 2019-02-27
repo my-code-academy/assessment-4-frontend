@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import {
+  View, StyleSheet, Dimensions, Text,
+} from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-
-const FirstRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-);
-const SecondRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
-);
+import FillForm from '../FillForm/FillForm.component';
 
 export default class TabViewExample extends React.Component {
   state = {
@@ -18,19 +14,30 @@ export default class TabViewExample extends React.Component {
     ],
   };
 
-  render() {
-    return (
-      <TabView
-        navigationState={this.state}
-        renderScene={SceneMap({
-          first: FirstRoute,
-          second: SecondRoute,
-        })}
-        onIndexChange={index => this.setState({ index })}
-        initialLayout={{ width: Dimensions.get('window').width }}
-      />
-    );
-  }
+   FirstRoute = () => (
+     <FillForm navigation={this.props.navigation} formName={this.props.navigation.state.params.formName} />
+   );
+
+   SecondRoute = () => (
+     <View style={[styles.scene, { backgroundColor: '#673ab7' }]}>
+       <Text />
+     </View>
+   );
+
+   render() {
+     console.log('render', this.props);
+     return (
+       <TabView
+         navigationState={this.state}
+         renderScene={SceneMap({
+           first: this.FirstRoute,
+           second: this.SecondRoute,
+         })}
+         onIndexChange={index => this.setState({ index })}
+         initialLayout={{ width: Dimensions.get('window').width }}
+       />
+     );
+   }
 }
 
 const styles = StyleSheet.create({

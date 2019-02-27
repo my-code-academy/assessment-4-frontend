@@ -1,8 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  allCards: {
+  mainContainer: {
     flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#D8E4F0',
+  },
+  allCards: {
+    // flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#D8E4F0',

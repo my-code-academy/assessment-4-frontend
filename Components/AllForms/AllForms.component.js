@@ -34,24 +34,27 @@ export default class AllForms extends Component {
   render() {
     const { allFormsData } = this.state;
     return (
-      <ScrollView
-        contentContainerStyle={styles.allCards}
-        refreshControl={(
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
+      <View style={styles.mainContainer}>
+        <ScrollView
+          contentContainerStyle={styles.allCards}
+          refreshControl={(
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
         )}
-      >
-        <View>
-          {
+        >
+          <View>
+            {
             allFormsData.map(formData => (
               <TouchableOpacity>
                 <FormCard formName={formData.name} datetime={formData.date} navigation={this.props.navigation} />
               </TouchableOpacity>
             ))
           }
-        </View>
+          </View>
+
+        </ScrollView>
         <View style={styles.MainContainer}>
           <TouchableOpacity
             activeOpacity={0.7}
@@ -66,7 +69,7 @@ export default class AllForms extends Component {
             />
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
