@@ -4,8 +4,9 @@ import {
 } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import FillForm from '../FillForm/FillForm.component';
+// import ShowResponses from '../ShowResponses/ShowResponses.component';
 
-export default class TabViewExample extends React.Component {
+export default class FormResponse extends React.Component {
   state = {
     index: 0,
     routes: [

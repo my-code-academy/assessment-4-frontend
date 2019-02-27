@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { ScrollView } from 'react-native-gesture-handler';
+import styles from './Fillform.styles';
 
 export default class FillForm extends Component {
   state = {
@@ -56,29 +57,3 @@ export default class FillForm extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  formNameInput: {
-    height: 40,
-    width: 300,
-    borderColor: 'gray',
-    // borderWidth: 1,
-    borderBottomWidth: 1,
-    margin: 20,
-  },
-  footerText: {
-    color: '#fff',
-    fontSize: 20,
-    marginTop: 10,
-  },
-  footer: {
-    backgroundColor: 'purple',
-    width: 400,
-    height: 50,
-    alignItems: 'center',
-  },
-});
