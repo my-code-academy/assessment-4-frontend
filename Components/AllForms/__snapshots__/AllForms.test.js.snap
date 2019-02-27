@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllForms should match the snapshot 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#D8E4F0",
+      "justifyContent": "flex-start",
+    }
+  }
+>
+  <View>
+    <View />
+  </View>
+</RCTScrollView>
+`;

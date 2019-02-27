@@ -5,11 +5,17 @@ import {
 
 export default class AllForms extends Component {
   render() {
+    const { formName, datetime } = this.props;
     return (
-      <View style={styles.card}>
-        <Text style={styles.cardText}>hello World</Text>
-        <Text style={styles.cardText}>created At</Text>
-      </View>
+      <TouchableOpacity style={styles.card} onPress={() => console.log('hhh')}>
+        <Text style={styles.cardText}>{formName}</Text>
+        <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }} />
+        <Text style={styles.datetime}>
+          created At:
+          {' '}
+          {datetime}
+        </Text>
+      </TouchableOpacity>
     );
   }
 }
@@ -26,8 +32,15 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   cardText: {
-    color: 'white',
-    fontSize: 40,
+    color: 'black',
+    fontSize: 20,
     margin: 20,
+  },
+  datetime: {
+    color: 'black',
+    fontSize: 10,
+    margin: 10,
+    textAlign: 'right',
+    alignSelf: 'stretch',
   },
 });

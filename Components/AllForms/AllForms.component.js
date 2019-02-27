@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
 import {
-  TextInput, TouchableOpacity, Text, KeyboardAvoidingView, View, StyleSheet, ScrollView,
+  TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Image, ScrollView, StyleSheet, View,
 } from 'react-native';
+import axios from 'axios';
+import FormCard from '../FormCards/FormCard.component';
 
 export default class AllForms extends Component {
+  state = {
+    allFormsData: [],
+  }
+
+  componentDidMount() {
+    const allForms = axios.get('http://localhost:7777/forms/names').then((formsNames) => {
+      this.setState({ allFormsData: formsNames.data });
+    });
+  }
+
   render() {
+    const { allFormsData } = this.state;
     return (
-      <ScrollView style={styles.card}>
-        <Text style={styles.cardText}>A</Text>
-        <Text style={styles.cardText}>B</Text>
+      <ScrollView contentContainerStyle={styles.allCards}>
+        <View>
+          {
+            allFormsData.map(formData => (
+              <TouchableOpacity>
+                <FormCard formName={formData.name} datetime={formData.date} />
+              </TouchableOpacity>
+            ))
+          }
+        </View>
+
       </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'purple',
-    width: 300,
-    margin: 10,
-    minHeight: 100,
-    color: 'white',
-  },
-  cardText: {
-    color: 'white',
-    fontSize: 40,
-    margin: 20,
+  allCards: {
+    // flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#D8E4F0',
+    // height: 800,
   },
 });
