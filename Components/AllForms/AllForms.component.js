@@ -41,13 +41,13 @@ export default class AllForms extends Component {
             refreshing={this.state.refreshing}
             onRefresh={this._onRefresh}
           />
-)}
+        )}
       >
         <View>
           {
             allFormsData.map(formData => (
               <TouchableOpacity>
-                <FormCard formName={formData.name} datetime={formData.date} />
+                <FormCard formName={formData.name} datetime={formData.date} navigation={this.props.navigation} />
               </TouchableOpacity>
             ))
           }

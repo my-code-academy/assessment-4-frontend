@@ -4,6 +4,7 @@ import {
 
 import AllForms from './Components/AllForms/AllForms.component';
 import AddFormComponent from './Components/AddForm/AddForm.component';
+import FormResponseComponent from './Components/FormResponse/FormResponse.component';
 
 const AppNavigator = createStackNavigator({
   AllForms: {
@@ -17,6 +18,9 @@ const AppNavigator = createStackNavigator({
     // navigationOptions: {
     //   header: null,
     // },
+  },
+  FormResponse: {
+    screen: FormResponseComponent,
   },
 }, {
   initialRouteName: 'AllForms',
