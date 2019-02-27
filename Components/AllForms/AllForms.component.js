@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Image, ScrollView, StyleSheet, View, Alert,
+  TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Image, ScrollView, StyleSheet, View, Alert, RefreshControl,
 } from 'react-native';
 import axios from 'axios';
 import FormCard from '../FormCards/FormCard.component';
@@ -9,11 +9,21 @@ import styles from './AllForms.styles';
 export default class AllForms extends Component {
   state = {
     allFormsData: [],
+    refreshing: false,
   }
 
   componentDidMount() {
     const allForms = axios.get('http://localhost:7777/forms/names').then((formsNames) => {
       this.setState({ allFormsData: formsNames.data });
+    });
+  }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    axios.get('http://localhost:7777/forms/names').then((formsNames) => {
+      this.setState({ allFormsData: formsNames.data });
+    }).then(() => {
+      this.setState({ refreshing: false });
     });
   }
 
@@ -24,7 +34,15 @@ export default class AllForms extends Component {
   render() {
     const { allFormsData } = this.state;
     return (
-      <ScrollView contentContainerStyle={styles.allCards}>
+      <ScrollView
+        contentContainerStyle={styles.allCards}
+        refreshControl={(
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+)}
+      >
         <View>
           {
             allFormsData.map(formData => (

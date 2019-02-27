@@ -42,7 +42,9 @@ export default class AllForms extends Component {
     const formFieldValues = this.state.formFieldValues;
     const formFieldsObject = formFieldValues.reduce((o, key) => Object.assign(o, { [key]: '' }), {});
     formFieldsObject.name = this.state.formName;
-    // axios.post('')
+    axios.post('http://localhost:7777/add/schema', formFieldsObject).then((res) => {
+      this.props.navigation.navigate('AllForms', { navigation: this.props.navigation });
+    });
     console.log(formFieldsObject);
   }
 
